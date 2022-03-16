@@ -1,0 +1,41 @@
+
+@api =http://localhost:5000/estudiante
+
+GET {{api}}
+###
+GET {{api}}/2
+###
+DELETE {{api}}/5
+###
+PUT {{api}}/5
+Content-Type: application/json
+
+{
+    "TipoIdentificacion": "Cc",
+    "Identificacion": "d23432",
+    "Nombre1": "Luz", 
+    "Nombre2": "Carolina",
+    "Apellido1": "restrepo",
+    "Apellido2": "Garcia",
+    "Email": "correo@gmail.com",
+    "Celular": "3218256227",
+    "Direccion": "cra19",
+    "Ciudad": "Buga"
+}
+###
+POST {{api}}
+Content-Type: application/json
+
+{
+    "TipoIdentificacion": "Cc",
+    "Identificacion": "d23432",
+    "Nombre1": "Luz", 
+    "Nombre2": "Carolina",
+    "Apellido1": "restrepo",
+    "Apellido2": "Garcia",
+    "Email": "correo@gmail.com",
+    "Celular": "3218256227",
+    "Direccion": "cra19",
+    "Ciudad": "Buga"
+}
+

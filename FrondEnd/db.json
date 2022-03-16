@@ -1,0 +1,34 @@
+{
+  "posts": [
+    {
+      "id": 2,
+      "tipoIdentificacion": "Ti",
+      "identificacion": 12312321,
+      "primerNombre": "fredy",
+      "segundoNombre": "carlos",
+      "primerApellido": "Restrepo",
+      "segundoApellido": "carlos",
+      "email": "asdfasd@gmail.com",
+      "telefono": 3218256227,
+      "direccion": "barrio alcazar del cafe manzana1 casa 2",
+      "ciudad": "armenia"
+    },
+    {
+      "id": 3,
+      "tipoIdentificacion": "Ti",
+      "identificacion": 12312321,
+      "primerNombre": "Andrea",
+      "segundoNombre": "carlos",
+      "primerApellido": "Restrepo",
+      "segundoApellido": "carlos",
+      "email": "asdfasd@gmail.com",
+      "telefono": 3218256227,
+      "direccion": "barrio alcazar del cafe manzana1 casa 2",
+      "ciudad": "armenia"
+    }
+  ],
+  "comments": [],
+  "profile": {
+    "name": "typicode"
+  }
+}

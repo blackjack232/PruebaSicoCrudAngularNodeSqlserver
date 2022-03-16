@@ -1,0 +1,295 @@
+<nav class="navbar navbar-expand-lg navbar-light p-3 " style="background-color: #5A76E3;">
+  <div class="container-fluid">
+    <a class="navbar-brand p-3 text-white ">Gentión de Estudiantes</a>
+
+
+    <button type="button" class="btn btn-success p-2 text-white" (click)="abrirModalCrear()">Crear Estudiante</button>
+
+  </div>
+</nav>
+
+<div class="container p-4">
+  <div role="tab " class="d-flex "style="padding-left:300px">
+    <ul class="nav nav-tabs mb-4">
+      <li class=" nav-item">
+        <button class="nav-link " id="cedula" (click)="tabBusquedaClick('cedula')">Buscar por cedula</button>
+      </li>
+      <li>
+        <button class="nav-link" id="nombre" (click)="tabBusquedaClick('nombre')">Buscar por Nombre</button>
+      </li>
+      <li>
+        <button class="nav-link" id="apellido" (click)="tabBusquedaClick('apellido')">Buscar por Apellido</button>
+      </li>
+      <li>
+        <button class="nav-link" id="email" (click)="tabBusquedaClick('email')">Buscar por Email</button>
+      </li>
+    </ul>
+  </div>
+</div>
+<div class="content  ">
+  <div class="content-value " style="padding-left: 460px " *ngIf="id2 === 'cedula'">
+    <form [formGroup]="formValue">
+      <div class="form-group ">
+        <form class="form-inline d-flex">
+          <input class="form-control  w-50 mr-50 m-2" type="search" placeholder="Buscar por numero de cedula"
+            aria-label="Search">
+          <button class="btn btn-outline-success  m-2" type="submit">Buscar</button>
+        </form>
+      </div>
+
+
+    </form>
+  </div>
+
+  <div class="content-value"  style="padding-left: 460px " *ngIf="id2 === 'nombre'">
+    <form [formGroup]="formValueInscripcion">
+      <div class="form-group">
+        <form class="form-inline d-flex">
+          <input class="form-control  w-50 mr-50 m-2" type="search" placeholder="Buscar por el primer nombre"
+            aria-label="Search">
+          <button class="btn btn-outline-success m-2" type="submit">Buscar</button>
+        </form>
+
+      </div>
+
+
+    </form>
+
+
+  </div>
+  <div class="content-value"  style="padding-left: 460px" *ngIf="id2 === 'apellido'">
+    <form [formGroup]="formValueInscripcion">
+      <div class="form-group">
+        <form class="form-inline d-flex">
+          <input class="form-control  w-50 mr-50 m-2" type="search" placeholder="Buscar por el primer apellido"
+            aria-label="Search">
+          <button class="btn btn-outline-success m-2" type="submit">Buscar</button>
+        </form>
+
+      </div>
+
+
+    </form>
+
+
+  </div>
+  <div class="content-value" style="padding-left: 460px" *ngIf="id2 === 'email'">
+    <form [formGroup]="formValueInscripcion">
+      <div class="form-group">
+        <form class="form-inline d-flex">
+          <input class="form-control  w-50 mr-50 m-2" type="search" placeholder="Buscar por el Email"
+            aria-label="Search">
+          <button class="btn btn-outline-success m-2" type="submit">Buscar</button>
+        </form>
+
+      </div>
+
+
+    </form>
+
+
+  </div>
+
+</div>
+
+
+
+<div class="p-3">
+  <table class="table mt-3  table-striped">
+    <thead style="background-color:#a0b1f5">
+      <tr>
+
+        <th scope="col">Tipo Identificación</th>
+        <th scope="col">Identificación</th>
+        <th scope="col">Nombre</th>
+        <th scope="col">Apellido</th>
+        <th class=" text-center" scope="col">E-mail</th>
+        <th scope="col">Cel</th>
+        <th class=" text-center" scope="col">Dirección</th>
+        <th scope="col">Ciudad</th>
+        <th class=" text-center" scope="col">Acción</th>
+
+      </tr>
+    </thead>
+
+    <tbody>
+
+      <tr *ngFor="let row of estudianteData">
+        <td>{{row.TipoIdentificacion}}</td>
+        <td>{{row.Identificacion}}</td>
+        <td>{{row.Nombre1+' '+row.Nombre2}}</td>
+        <td>{{row.Apellido1+' '+row.Apellido2}}</td>
+        <td>{{row.Email}}</td>
+        <td>{{row.Celular}}</td>
+        <td>{{row.Direccion}}</td>
+        <td>{{row.Ciudad}}</td>
+
+        <td>
+          <button class="btn btn-outline-warning mx-2" (click)="abrirModalEditar(row)">Editar</button>
+          <button class="btn btn-outline-danger mx-2" (click)="deleteEstudiante(row)">Eliminar</button>
+        </td>
+
+
+      </tr>
+    </tbody>
+  </table>
+
+</div>
+
+
+
+<div class="modal fade" id="modalCrear" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+  aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Detalle Estudiante</h5>
+        <button type="button" class="btn btn-danger" data-dismiss="modal" (click)="cerrarModalCrear()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body ">
+        <div class="container">
+          <div role="tab">
+
+            <ul class="nav nav-tabs mb-4">
+              <li class=" nav-item">
+                <button class="nav-link " id="Estudiante" (click)="tabClick('Estudiante')">Estudiante</button>
+              </li>
+              <li>
+                <button class="nav-link" id="Inscripcion" (click)="tabClick('Inscripcion')">Cursos</button>
+              </li>
+              <li>
+                <button class="nav-link" id="Cursos" (click)="tabClick('Cursos')">Cursos de
+                  estudiante</button>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+
+        <div class="content">
+          <div class="content-value" *ngIf="id === 'Estudiante'">
+            <form [formGroup]="formValue">
+              <div class="form-group">
+                <label>Tipo Identificación</label>
+                <select type="text" formControlName="TipoIdentificacion" class="form-control"
+                  id="inputTipoIdentificacion" aria-placeholder="Ti">
+                  <option value="Ti">Ti</option>
+                  <option value="Cc">Cc</option>
+                </select>
+
+              </div>
+
+              <div class="form-group">
+                <label>Identificación</label>
+                <input type="text" formControlName="Identificacion" class="form-control" id="inputIndetificacion"
+                  placeholder="Numero de identificación">
+              </div>
+              <div class="form-group">
+                <label>Primer Nombre</label>
+                <input type="text" formControlName="Nombre1" class="form-control" id="inputPrimerNombre"
+                  placeholder="Primer nombre">
+              </div>
+              <div class="form-group">
+                <label>Segundo Nombre</label>
+                <input type="text" formControlName="Nombre2" class="form-control" id="inputSegundoNombre"
+                  placeholder="Segundo nombre">
+              </div>
+              <div class="form-group">
+                <label>Primer Apellido</label>
+                <input type="text" formControlName="Apellido1" class="form-control" id="inputPrimerApellido"
+                  placeholder="Primer Apellido">
+              </div>
+              <div class="form-group">
+                <label>Segundo Apellido</label>
+                <input type="text" formControlName="Apellido2" class="form-control" id="inputSegundoApellido"
+                  placeholder="Segundo Apellido">
+              </div>
+              <div class="form-group">
+                <label>E-mail</label>
+                <input type="email" formControlName="Email" class="form-control" id="inputEmail" placeholder="Email">
+              </div>
+              <div class="form-group">
+                <label>Telefono</label>
+                <input type="text" formControlName="Telefono" class="form-control" id="inputTelefono"
+                  placeholder="Telefono">
+              </div>
+              <div class="form-group ">
+                <label>Dirección</label>
+                <input type="text" formControlName="Direccion" class="form-control" id="inputDireccion"
+                  placeholder="Direccion">
+              </div>
+              <div class="form-group">
+                <label>Ciudad</label>
+                <input type="text" formControlName="Ciudad" class="form-control" id="inputCiudad" placeholder="Ciudad">
+              </div>
+            </form>
+          </div>
+
+          <div class="content-value" *ngIf="id === 'Inscripcion'">
+            <form [formGroup]="formValueInscripcion">
+              <div class="form-group">
+                <label>Cursos Disponibles</label>
+                <select type="text" formControlName="cursosDisponibles" class="form-control" aria-placeholder="">
+                  <option value="Curso Programacion 1">Curso Programacion 1</option>
+                  <option value="Curso Programacion 2">Curso Programacion 2</option>
+                  <option value="Curso Programacion 3">Curso Programacion 3</option>
+                  <option value="Curso Bases Datos 1">Curso Bases Datos 1</option>
+                  <option value="Curso Bases Datos 2">Curso Bases Datos 2</option>
+                  <option value="Curso Bases Datos 3">Curso Bases Datos 3</option>
+
+                </select>
+
+              </div>
+
+
+            </form>
+
+
+          </div>
+          <div class="content-value" *ngIf="id === 'Cursos'">
+            <table class="table mt-3  table-striped">
+              <thead style="background-color:#a0b1f5">
+                <tr>
+                  <th scope="col">Nombre</th>
+                  <th scope="col">Creditos</th>
+                  <th scope="col">Nota Final</th>
+                  <th scope="col">Acción</th>
+
+                </tr>
+              </thead>
+
+              <tbody>
+
+                <tr *ngFor="let row of estudianteData">
+                  <td>"{{row.Nombre1}}"</td>
+                  <td>{{row.Nombre1}}</td>
+                  <td>{{row.Nombre1}}</td>
+
+                  <td>
+                    <button class="btn btn-outline-warning mx-2" (click)="abrirModalEditar(row)">Editar</button>
+                    <button class="btn btn-outline-danger mx-2" (click)="deleteEstudiante(row)">Eliminar</button>
+                  </td>
+
+
+                </tr>
+              </tbody>
+            </table>
+
+          </div>
+
+        </div>
+
+
+
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="cerrarModalCrear()">Close</button>
+        <button type="button" class="btn btn-primary" (click)="postEstudianteDetalle()">Guardar</button>
+        <button type="button" class="btn btn-primary" (click)="updateEstudiante()">Actualizar</button>
+      </div>
+    </div>
+  </div>
+</div>
